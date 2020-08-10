@@ -1,17 +1,28 @@
 import pytest
-import time
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 
 def pytest_addoption(parser):
-    parser.addoption('--language', action='store', default=None,
+    parser.addoption('--language', action='store', default='en',
                      help="Choose language: ")
+    parser.addoption('--browser_name', action='store', default='chrome',
+                     help="Choose browser")
 
 
-@pytest.fixture()
+@pytest.fixture(scope="function")
 def browser(request):
-    browser_language = request.config.getoption('language')
-    browser = webdriver.Chrome()
-    browser.get(f"http://selenium1py.pythonanywhere.com/{browser_language}/catalogue/coders-at-work_207/")
-    yield browser
-    browser.quit()
+    user_language = request.config.getoption('language')
+    browser_name = request.config.getoption('browser_name')
+    if browser_name == "chrome":
+        options = Options()
+        options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
+        browser = webdriver.Chrome(options=options)
+        yield browser
+        browser.quit()
+    elif browser_name == 'firefox':
+        fp = webdriver.FirefoxProfile()
+        fp.set_preference("intl.accept_languages", user_language)
+        browser = webdriver.Firefox(firefox_profile=fp)
+        yield browser
+        browser.quit()
