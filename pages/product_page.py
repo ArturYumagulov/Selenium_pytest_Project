@@ -19,7 +19,7 @@ class PageObject(BasePage):
         book_price = self.browser.find_element(*ObjectPageLocators.PRODUCT_PRICE)
         return book_price.text
 
-    def correct_data_in_badket(self, name, price):
+    def correct_data_in_basket(self, name, price):
         assert self.is_element_present(*ObjectPageLocators.PRODUCT_NAME), "basket product name not find"
         assert self.is_element_present(*ObjectPageLocators.BASKET_PRODUCT_PRICE)
         basket_book_name = self.browser.find_element(*ObjectPageLocators.PRODUCT_NAME)
