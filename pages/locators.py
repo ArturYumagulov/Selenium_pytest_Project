@@ -8,3 +8,7 @@ class MainPageLocators:
 class LoginPageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_form")
     REGISTER_LINK = (By.CSS_SELECTOR, "#register_form")
+
+
+class ObjectPageLocators:
+    BASKET_SUBMIT = (By.CSS_SELECTOR, "button[class='btn btn-lg btn-primary btn-add-to-basket']")
