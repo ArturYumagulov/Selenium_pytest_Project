@@ -22,7 +22,7 @@ class PageObject(BasePage):
     def correct_data_in_basket(self, name, price):
         assert self.is_element_present(*ObjectPageLocators.PRODUCT_NAME), "basket product name not find"
         assert self.is_element_present(*ObjectPageLocators.BASKET_PRODUCT_PRICE)
-        basket_book_name = self.browser.find_element(*ObjectPageLocators.PRODUCT_NAME)
+        basket_book_name = self.browser.find_element(*ObjectPageLocators.BASKET_PRODUCT_NAME)
         basket_book_price = self.browser.find_element(*ObjectPageLocators.BASKET_PRODUCT_PRICE)
         assert basket_book_name.text == name, "The name of the product does not match the selected"
         assert basket_book_price.text == price, "The price of the product does not match the selected"
