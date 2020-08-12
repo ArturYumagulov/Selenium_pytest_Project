@@ -1,2 +1,2 @@
-# Stepik_repository
-Repository_for_stepik_mark
+# Selenium_pytest_project
+Selenium_pytest_project
