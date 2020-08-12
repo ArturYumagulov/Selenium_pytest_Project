@@ -27,6 +27,14 @@ class PageObject(BasePage):
         assert basket_book_name.text == name, "The name of the product does not match the selected"
         assert basket_book_price.text == price, "The price of the product does not match the selected"
 
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ObjectPageLocators.SUCCESS_MESSAGE),\
+            "Success message is presented, but should not be"
+
+    def should_not_be_success_message_disappears(self):
+        assert self.is_disapperaed(*ObjectPageLocators.SUCCESS_MESSAGE),\
+            "Success message is presented, but should not be"
+
 
 
 

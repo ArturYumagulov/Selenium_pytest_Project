@@ -19,3 +19,4 @@ class ObjectPageLocators:
     BASKET_PRODUCT_PRICE = (By.CSS_SELECTOR,
                             "div[id=messages] "
                             "div[class='alert alert-safe alert-noicon alert-info  fade in'] div strong")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
