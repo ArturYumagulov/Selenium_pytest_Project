@@ -1,7 +1,13 @@
 from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
+from .pages.basket_page import BasketPage
+import pytest
+import time
+
+link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
 
 
+@pytest.mark.skip
 def test_guest_can_go_to_login_page(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     page = MainPage(browser, link, timeout=3)
@@ -10,4 +16,15 @@ def test_guest_can_go_to_login_page(browser):
     page.should_be_login_link()
     login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_page()
+
+
+def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
+    page = BasketPage(browser, link)
+    page.open()
+    page.should_be_present_basket()
+    page.go_to_basket()
+    # time.sleep(300)
+    page.should_be_wait_is_not_product_in_basket()
+
+
 

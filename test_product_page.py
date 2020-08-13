@@ -1,5 +1,5 @@
 import time
-
+from .pages.basket_page import BasketPage
 from .pages.product_page import PageObject
 import pytest
 
@@ -59,3 +59,15 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page = PageObject(browser, link_2)
     page.open()
     page.go_to_login_page()
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    # Гость открывает главную страницу
+    page = BasketPage(browser, link)
+    page.open()
+    page.should_be_present_basket()
+    # Переходит в корзину по кнопке в шапке сайта
+    page.go_to_basket()
+    page.should_be_wait_is_not_product_in_basket()
+    # Ожидаем, что в корзине нет товаров
+    # Ожидаем, что есть текст о том что корзина пуста
